@@ -1,0 +1,84 @@
+
+.player-container{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.player-container>.control{
+    height: 45px;
+    width: 45px;
+    border-radius: 45px;
+    border: solid 5px chartreuse;
+}
+
+.player-container>.next{
+   
+    margin-left: 10px;
+}
+
+.player-container>.next:hover{
+    color:gray;
+    cursor: pointer;
+}
+
+.player-container>.prev{
+    margin-right: 10px;
+}
+.player-container>.prev:hover{
+    color:gray;
+    cursor: pointer;
+}
+
+.list{
+    list-style-type: none;
+    text-align: center;
+    max-height: 400px;
+    width: 600px;
+    overflow-y: auto;
+    background: radial-gradient();
+}
+
+.list>.playing{
+    font:bold;
+    color:chartreuse;
+    list-style-type:circle;
+}
+
+.list>.list-song:hover{
+    color:gray;
+    cursor: pointer;
+
+}
+
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+  }
+   
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888; 
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555; 
+  }
+
+  input[type="file"] {
+    display: none;
+}
+.file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+.file-upload:hover{
+    color:gray;
+}
