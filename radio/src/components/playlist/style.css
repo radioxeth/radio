@@ -9,7 +9,7 @@
     height: 45px;
     width: 45px;
     border-radius: 45px;
-    border: solid 5px chartreuse;
+    border: solid 5px skyblue;
 }
 
 .player-container>.next{
@@ -18,7 +18,7 @@
 }
 
 .player-container>.next:hover{
-    color:gray;
+    color:greenyellow;
     cursor: pointer;
 }
 
@@ -26,7 +26,7 @@
     margin-right: 10px;
 }
 .player-container>.prev:hover{
-    color:gray;
+    color:greenyellow;
     cursor: pointer;
 }
 
@@ -41,12 +41,12 @@
 
 .list>.playing{
     font:bold;
-    color:chartreuse;
+    color:skyblue;
     list-style-type:circle;
 }
 
 .list>.list-song:hover{
-    color:gray;
+    color:greenyellow;
     cursor: pointer;
 
 }

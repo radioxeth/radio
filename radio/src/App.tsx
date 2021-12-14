@@ -1,8 +1,8 @@
 import React from 'react';
 import './App.css';
 import Clock from './components/clock/clock';
+import Finder from './components/ipfs/finder';
 import LoadPlaylist from './components/playlist/load';
-import Player from './components/playlist/player';
 
 function App() {
   return (
@@ -10,6 +10,7 @@ function App() {
       <header className="App-header">
         <Clock />
         <LoadPlaylist />
+        <Finder />
       </header>
     </div>
   );
