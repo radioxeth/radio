@@ -4,6 +4,7 @@ import React, {
 import Player from './player'
 import Playlist from './playlist'
 import './style.css'
+
 const LoadPlaylist = () => {
     const playerId = 'player'
     const [fileList, setFileList] = useState<File[]>([])
