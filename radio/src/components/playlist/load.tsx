@@ -1,4 +1,5 @@
 import React, {
+    useEffect,
     useState
 } from 'react'
 import Player from './player'
@@ -6,7 +7,7 @@ import Playlist from './playlist'
 import './style.css'
 
 const LoadPlaylist = () => {
-    const playerId = 'player'
+    const playerId = 'player-id'
     const [fileList, setFileList] = useState<File[]>([])
     const [currentSongId, setCurrentSongId] = useState<number>(0)
 
@@ -48,36 +49,30 @@ const LoadPlaylist = () => {
         }
     }
 
-    const _play = (idx: number) => {
-        setCurrentSongId(idx)
-
-        function readFile(event: any) {
-            _getMusic(event.target.result, idx)
-        }
-
-        function changeFile() {
-            const reader = new FileReader()
-            reader.addEventListener('load', readFile)
-            reader.readAsDataURL(fileList[idx])
-        }
-
-        changeFile()
+    function readFile(event: any, idx: number) {
+        _getMusic(event.target.result, idx)
     }
+
+    function changeFile(idx: number) {
+        const reader = new FileReader()
+        reader.addEventListener('load', (e) => readFile(e, idx))
+        reader.readAsDataURL(fileList[idx])
+    }
+
+    const _play = (idx: number) => {
+        try {
+            setCurrentSongId(idx)
+            changeFile(idx)
+        } catch (e) {
+            console.log(e)
+        }
+
+    }
+
+    useEffect(() => { _play(0) }, [fileList])
 
     return (
         <div>
-            <label className='file-upload'>
-                <input
-                    type="file"
-                    accept="audio/mp3"
-                    name="inputfile"
-                    id="inputfile"
-                    multiple
-                    onChange={(e) => { _loadPlaylist(e) }}
-                />
-                Upload Music
-            </label>
-
             <Playlist
                 fileList={fileList}
                 play={_play}
@@ -91,6 +86,19 @@ const LoadPlaylist = () => {
                     playerId={playerId}
                 />
             }
+            <label className='file-upload'>
+                <input
+                    type="file"
+                    accept="audio/mp3"
+                    name="inputfile"
+                    id="inputfile"
+                    multiple
+                    onChange={(e) => { _loadPlaylist(e) }}
+                />
+                Upload Music
+            </label>
+
+
         </div>
     )
 }

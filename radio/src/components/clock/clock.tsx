@@ -1,12 +1,18 @@
 import React, { useState } from 'react'
 
 const Clock = () => {
-    const [time, setTime] = useState<string>(new Date().toLocaleTimeString())
-    window.setInterval(() => { setTime(new Date().toLocaleTimeString()) }, 1000)
+    const getTime = () => {
+        const date = new Date()
+        const hour = date.getHours()
+        const minute = date.getMinutes()
+        return `${hour % 12}:${minute < 10 ? '0' + minute : minute} ${hour >= 12 ? 'PM' : 'AM'}`
+    }
+    const [time, setTime] = useState<string>(getTime())
+    window.setInterval(() => { setTime(getTime()) }, 1000)
     return (
-        <div>
+        <h1>
             {time}
-        </div>
+        </h1>
     )
 }
 
