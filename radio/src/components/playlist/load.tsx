@@ -7,7 +7,6 @@ type Props = {
 const LoadPlaylist = (props: Props) => {
     return (
         <div>
-
             <label className='file-upload'>
                 <input
                     type="file"
@@ -17,7 +16,7 @@ const LoadPlaylist = (props: Props) => {
                     multiple
                     onChange={(e) => { props.loadPlayList(e) }}
                 />
-                Load Music
+                LOAD MUSIC
             </label>
         </div>
     )

@@ -135,8 +135,9 @@
 .file-upload {
     border: 2px solid whitesmoke;
     display: inline-block;
-    padding: 6px 12px;
+    padding: 3px 6px;
     cursor: pointer;
+    font-size: 14px;
     box-shadow: black 0px 0px 5px;
 }
 
