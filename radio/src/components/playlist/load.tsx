@@ -70,7 +70,6 @@ const LoadPlaylist = () => {
     }
 
     useEffect(() => { _play(0) }, [fileList])
-
     return (
         <div>
             <Playlist

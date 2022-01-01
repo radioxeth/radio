@@ -6,6 +6,7 @@ type Props = {
     playerId: string
 }
 const Player = (props: Props) => {
+
     return (
         <div className='player-container' >
             <div className='prev control' onClick={props.playPrev}><b>{'<<'}</b></div>
