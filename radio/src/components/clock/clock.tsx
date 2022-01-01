@@ -1,16 +1,16 @@
 import React, { useState } from 'react'
-
+import './style.css'
 const Clock = () => {
     const getTime = () => {
         const date = new Date()
         const hour = date.getHours()
         const minute = date.getMinutes()
-        return `${hour % 12}:${minute < 10 ? '0' + minute : minute} ${hour >= 12 ? 'PM' : 'AM'}`
+        return `${hour % 12 === 0 ? 12 : hour % 12}:${minute < 10 ? '0' + minute : minute} ${hour >= 12 ? 'PM' : 'AM'}`
     }
     const [time, setTime] = useState<string>(getTime())
     window.setInterval(() => { setTime(getTime()) }, 1000)
     return (
-        <h1>
+        <h1 className='time'>
             {time}
         </h1>
     )

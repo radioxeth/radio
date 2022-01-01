@@ -8,9 +8,9 @@ type Props = {
 const Player = (props: Props) => {
     return (
         <div className='player-container' >
-            <div className='prev control' onClick={props.playPrev}>{'<<'}</div>
+            <div className='prev control' onClick={props.playPrev}><b>{'<<'}</b></div>
             <div className='player' id={props.playerId} />
-            <div className='next control' onClick={props.playNext}>{'>>'}</div>
+            <div className='next control' onClick={props.playNext}><b>{'>>'}</b></div>
         </div >
     )
 }

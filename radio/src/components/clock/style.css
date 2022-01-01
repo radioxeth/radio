@@ -1,0 +1,13 @@
+.time{
+    color:whitesmoke;
+    text-shadow:black 0px 0px 5px;
+    animation: timeshadow 30s linear infinite;
+}
+
+/* @keyframes timeshadow{
+    0%{text-shadow: .1em .1em black;}
+    25%{text-shadow: .1em -.1em black;}
+    50%{text-shadow: -.1em -.1em black;}
+    75%{text-shadow: -.1em .1em black;}
+    100%{text-shadow: .1em .1em black;}
+} */

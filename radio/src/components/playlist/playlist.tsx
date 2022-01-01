@@ -9,7 +9,7 @@ const Playlist = (props: Props) => {
     const _renderPlayList = () => {
         return (
             <div>
-                <ul className={'list'}>
+                <ul className='list'>
                     {
                         props.fileList.map((file, idx) => {
                             return (

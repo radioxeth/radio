@@ -3,82 +3,123 @@
     display: flex;
     flex-wrap: nowrap;
     justify-content: center;
+    background-color: whitesmoke;
+    margin:0px 100px 0px 100px;
+    padding-top: 3px;
+    border-radius: 45px;
+    text-align:center;
+    text-justify:inter-word;
 }
 
 .player-container>.control{
     height: 45px;
     width: 45px;
     border-radius: 45px;
-    border: solid 5px skyblue;
+    color:black;
+    padding-top: 3px;
+    border: solid 5px whitesmoke;
+
 }
 
 .player-container>.next{
-   
-    margin-left: 10px;
+    right:0px;
+    border-radius: 45px;
+
 }
 
 .player-container>.next:hover{
-    color:greenyellow;
     cursor: pointer;
+    background-color: rgba(10,10,10, .05);
 }
 
 .player-container>.prev{
-    margin-right: 10px;
+    border-radius: 45px
+    
 }
 .player-container>.prev:hover{
-    color:greenyellow;
     cursor: pointer;
+    background-color: rgba(10,10,10, .05);
 }
 
 .list{
     list-style-type: none;
-    text-align: center;
-    max-height: 400px;
+    text-align: left;
+    height: 50vh;
     width: 600px;
+    color: black;
+    background: rgba(245,345,345, .5);
+    border-radius: 5px;
+    border: solid 2px whitesmoke;
+    box-shadow: black 0px 0px 5px;
+    padding-right: 20px;
     overflow-y: auto;
-    background: radial-gradient();
 }
 
-.list>.playing{
-    font:bold;
-    color:skyblue;
-    list-style-type:circle;
-}
 
-.list>.list-song:hover{
-    color:greenyellow;
+
+.list-song{
+    color:black;
     cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    padding-left: 20px;
+}
 
+
+.list-song:hover{
+    color:black;
+    cursor: pointer;
+    text-shadow: 0 0 1px black;
+}
+
+.playing{
+    list-style-type: "\2622";
+    list-style-position: inside;
+    padding-left: 0px;
+    text-shadow: 0 0 1px black;
 }
 
 ::-webkit-scrollbar {
     width: 10px;
+    border-radius: 5px;
+    
   }
   
   /* Track */
   ::-webkit-scrollbar-track {
-    background: #f1f1f1; 
+      background:none;
+        border-radius: 5px;
   }
    
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: #888; 
+    background: darkgray; 
+    border-radius: 5px;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: #555; 
+    background: gray; 
+    border-radius: 5px;
   }
 
   input[type="file"] {
     display: none;
 }
 .file-upload {
-    border: 1px solid #ccc;
+    margin-top: 20px;
+    border: 2px solid whitesmoke;
+    border-radius:12px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
+    color: black;
+    background:rgba(245,245,245, 1);
+    box-shadow: black 0px 0px 5px;
 }
+
 .file-upload:hover{
-    color:gray;
+    /* text-shadow: black 0 0 1px; */
+    background:rgba(245,245,245, .5);
 }
