@@ -17,7 +17,6 @@
   background-color: #eee;
   -webkit-transition: .4s;
   transition: .4s;
-  /* border-radius: 34px; */
 }
 
 .slider:before {
@@ -29,8 +28,6 @@
   bottom: 4px;
   background-color: #333;
   -webkit-transition: .4s;
-  transition: .4s;
-  /* border-radius: 50%; */
 }
 
 input:checked + .slider {
@@ -59,9 +56,7 @@ input:checked + .slider:before {
 }
 
 input:checked + .slider:after
-{  
-
-  
+{
   content:'DARK';
   color: #eee;
 }

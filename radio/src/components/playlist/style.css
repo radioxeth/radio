@@ -63,10 +63,10 @@
 
 
 .list.dark{
-    background: rgba(10,10,10, .75);
+    background: rgba(10,10,10, .5);
 }
 .list.light{
-    background: rgba(245,245,245, .75);
+    background: rgba(245,245,245, .5);
 }
 
 .list-song{
@@ -88,7 +88,7 @@
 
 .light>.list-song:hover{
     cursor: pointer;
-    color:blue;
+    color:darkslateblue;
 }
 
 .dark>.playing{
@@ -101,7 +101,7 @@
 .light>.playing{
     list-style-type: "\2622";
     list-style-position: inside;
-    color:blue;
+    color:darkslateblue;
     padding-left: 0px;
 }
 
