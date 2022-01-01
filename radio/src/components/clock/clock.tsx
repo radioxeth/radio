@@ -10,9 +10,9 @@ const Clock = () => {
     const [time, setTime] = useState<string>(getTime())
     window.setInterval(() => { setTime(getTime()) }, 1000)
     return (
-        <h1 className='time'>
+        <label className='time'>
             {time}
-        </h1>
+        </label>
     )
 }
 

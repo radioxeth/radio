@@ -1,11 +1,37 @@
-body{
-  font-size: calc(10px + 2vmin);
-  color: grey;
-	background: linear-gradient(-45deg, #AE9CD6,#8BB9D4,#A6CFA1,#DAD6A1,#E1B298,#E59CA0);
-	background-size: 400% 400%;
-	animation: gradient 30s linear infinite;
-	height: 100vh;
+.light   {
+  background: #eee;
+  background: linear-gradient(-45deg, #AE9CD6,#8BB9D4,#A6CFA1,#DAD6A1,#E1B298,#E59CA0);
+	animation: gradient 10s linear infinite;
+  background-size: 400% 400%;
+  color:black;
 }
+
+.dark { 
+  background: #333;
+  background: linear-gradient(-45deg, #1A0E2D,#101E33,#072818,#453A02,#462206,#44110A);
+	animation: gradient 10s linear infinite;
+  background-size: 400% 400%;
+  color:whitesmoke;
+}
+
+@media (prefers-color-scheme: dark) {
+  .day.dark-scheme   { background:  #333; color: white; }
+  .night.dark-scheme { background: black; color:  #ddd; }
+}
+
+@media (prefers-color-scheme: light) {
+  .day.light-scheme   { background: white; color:  #555; }
+  .night.light-scheme { background:  #eee; color: black; }
+}
+
+
+body {
+  height: 100vh;
+  font-size: calc(10px + 2vmin);
+  background: #eee; 
+  color: black; 
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 0%;
@@ -18,6 +44,7 @@ body{
 	}
 }
 
+
 .App {
   text-align: center;
 }
@@ -29,9 +56,39 @@ body{
   min-height: 100vh;
 }
 
-.App-container>.App-header{
+.App-header{
   top:0;
-  left:0;
   position: fixed;
-  width: 100%;
+  width: 100vw;
+}
+
+.row{
+  display: flex;
+ align-content: center;
+}
+/* Create three unequal columns that sits next to each other */
+.column {
+  padding: 10px;
+}
+
+/* Left and right column */
+.column.side {
+   -webkit-flex: 1;
+   -ms-flex: 1;
+   flex: 1;
+}
+
+
+
+/* Middle column */
+.column.middle {
+  -webkit-flex: 2;
+  -ms-flex: 2;
+  flex: 2;
+}
+@media (max-width: 600px) {
+  .row {
+    -webkit-flex-direction: column;
+    flex-direction: column;
+  }
 }

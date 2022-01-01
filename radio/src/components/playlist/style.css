@@ -8,7 +8,7 @@
     padding-top: 3px;
     border-radius: 45px;
     text-align:center;
-    text-justify:inter-word;
+    text-justify: inter-word;
 }
 
 .player-container>.control{
@@ -46,19 +46,21 @@
     text-align: left;
     height: 50vh;
     width: 600px;
-    color: black;
     background: rgba(245,345,345, .5);
-    border-radius: 5px;
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
-    padding-right: 20px;
+    padding:0px 20px 0 20px;
     overflow-y: auto;
 }
-
+@media (max-width: 600px) {
+    .list {
+        width: 500px;
+        height: 30vh;
+    }
+  }
 
 
 .list-song{
-    color:black;
     cursor: pointer;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -70,14 +72,13 @@
 .list-song:hover{
     color:black;
     cursor: pointer;
-    text-shadow: 0 0 1px black;
 }
 
 .playing{
+    color:chartreuse;
     list-style-type: "\2622";
     list-style-position: inside;
     padding-left: 0px;
-    text-shadow: 0 0 1px black;
 }
 
 ::-webkit-scrollbar {
@@ -108,14 +109,10 @@
     display: none;
 }
 .file-upload {
-    margin-top: 20px;
     border: 2px solid whitesmoke;
-    border-radius:12px;
     display: inline-block;
     padding: 6px 12px;
     cursor: pointer;
-    color: black;
-    background:rgba(245,245,245, 1);
     box-shadow: black 0px 0px 5px;
 }
 
