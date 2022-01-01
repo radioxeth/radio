@@ -17,7 +17,7 @@
   background-color: #eee;
   -webkit-transition: .4s;
   transition: .4s;
-  border-radius: 34px;
+  /* border-radius: 34px; */
 }
 
 .slider:before {
@@ -27,10 +27,10 @@
   width: 26px;
   left: 4px;
   bottom: 4px;
-  background-color: greenyellow;
+  background-color: #333;
   -webkit-transition: .4s;
   transition: .4s;
-  border-radius: 50%;
+  /* border-radius: 50%; */
 }
 
 input:checked + .slider {
@@ -41,13 +41,14 @@ input:checked + .slider:before {
   -webkit-transform: translateX(56px);
   -ms-transform: translateX(56px);
   transform: translateX(85px);
+  background-color: #eee;
 }
 
-/*------ ADDED CSS ---------*/
 .slider:after
 {
  content:'LIGHT';
  color: #333;
+ 
  display: block;
  position: absolute;
  transform: translate(-50%,-50%);
@@ -59,8 +60,8 @@ input:checked + .slider:before {
 
 input:checked + .slider:after
 {  
+
+  
   content:'DARK';
   color: #eee;
 }
-
-/*--------- END --------*/

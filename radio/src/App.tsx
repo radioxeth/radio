@@ -98,6 +98,7 @@ function App() {
               fileList={fileList}
               play={_play}
               currentSongIdx={currentSongId}
+              darkMode={darkMode}
             />
             {fileList.length > 0 &&
               <Player

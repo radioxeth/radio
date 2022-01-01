@@ -13,18 +13,6 @@
   background-size: 400% 400%;
   color:whitesmoke;
 }
-
-@media (prefers-color-scheme: dark) {
-  .day.dark-scheme   { background:  #333; color: white; }
-  .night.dark-scheme { background: black; color:  #ddd; }
-}
-
-@media (prefers-color-scheme: light) {
-  .day.light-scheme   { background: white; color:  #555; }
-  .night.light-scheme { background:  #eee; color: black; }
-}
-
-
 body {
   height: 100vh;
   font-size: calc(10px + 2vmin);

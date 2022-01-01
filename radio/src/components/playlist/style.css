@@ -46,19 +46,28 @@
     text-align: left;
     height: 50vh;
     width: 600px;
-    background: rgba(245,345,345, .5);
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
     padding:0px 20px 0 20px;
     overflow-y: auto;
 }
+
 @media (max-width: 600px) {
     .list {
         width: 500px;
         height: 30vh;
     }
-  }
+}
 
+
+
+
+.list.dark{
+    background: rgba(10,10,10, .75);
+}
+.list.light{
+    background: rgba(245,245,245, .75);
+}
 
 .list-song{
     cursor: pointer;
@@ -70,14 +79,29 @@
 
 
 .list-song:hover{
-    color:black;
     cursor: pointer;
 }
+.dark>.list-song:hover{
+    cursor: pointer;
+    color:greenyellow;
+}
 
-.playing{
-    color:chartreuse;
+.light>.list-song:hover{
+    cursor: pointer;
+    color:blue;
+}
+
+.dark>.playing{
     list-style-type: "\2622";
     list-style-position: inside;
+    color:greenyellow;
+    padding-left: 0px;
+}
+
+.light>.playing{
+    list-style-type: "\2622";
+    list-style-position: inside;
+    color:blue;
     padding-left: 0px;
 }
 
