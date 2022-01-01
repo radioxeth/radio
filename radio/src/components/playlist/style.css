@@ -4,7 +4,6 @@
     flex-wrap: nowrap;
     justify-content: center;
     background-color: whitesmoke;
-    margin:0px 100px 0px 100px;
     padding-top: 3px;
     border-radius: 45px;
     text-align:center;
@@ -45,17 +44,18 @@
     list-style-type: none;
     text-align: left;
     height: 50vh;
-    width: 600px;
+    width: 400px;
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
-    padding:0px 20px 0 20px;
+    padding:0 20px;
     overflow-y: auto;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
     .list {
-        width: 500px;
         height: 30vh;
+        width: 200px;
+        
     }
 }
 
