@@ -44,17 +44,17 @@
     list-style-type: none;
     text-align: left;
     height: 50vh;
-    width: 400px;
+    width: 600px;
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
     padding:0 20px;
     overflow-y: auto;
 }
 
-@media (max-width: 400px) {
+@media (max-width: 600px) {
     .list {
         height: 30vh;
-        width: 200px;
+        width: 300px;
         
     }
 }
