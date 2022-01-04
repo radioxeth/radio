@@ -1,7 +1,7 @@
 .light   {
   background: #eee;
   background: linear-gradient(-45deg, #AE9CD6,#8BB9D4,#A6CFA1,#DAD6A1,#E1B298,#E59CA0);
-	animation: gradient 10s linear infinite;
+	animation: gradient 20s linear infinite;
   background-size: 400% 400%;
   color:black;
 }
@@ -9,7 +9,7 @@
 .dark { 
   background: #333;
   background: linear-gradient(-45deg, #1A0E2D,#101E33,#072818,#453A02,#462206,#44110A);
-	animation: gradient 10s linear infinite;
+	animation: gradient 20s linear infinite;
   background-size: 400% 400%;
   color:#eee;
 }
@@ -36,6 +36,7 @@ body {
 .App {
   text-align: center;
 }
+
 .App-container {
   display: flex;
   flex-direction: column;
@@ -54,6 +55,7 @@ body {
   display: flex;
  align-content: center;
 }
+
 /* Create three unequal columns that sits next to each other */
 .column {
   padding: 10px;
@@ -65,8 +67,6 @@ body {
    -ms-flex: 1;
    flex: 1;
 }
-
-
 
 /* Middle column */
 .column.middle {

@@ -81,15 +81,13 @@ function App() {
       <div className='App-container'>
         <div className='App-header row'>
           <div className='column side load'>
-            <LoadPlaylist
-              loadPlayList={() => { _loadPlaylist() }}
-            />
+            <LoadPlaylist loadPlayList={() => { _loadPlaylist() }} />
           </div>
           <div className='column middle clock'>
             <Clock />
           </div>
           <div className='column side toggle'>
-            <Toggle checked={darkMode} label={`${darkMode ? 'Dark' : 'Light'}`} title='Toggle dark mode' onChange={() => setDarkMode(!darkMode)} />
+            <Toggle checked={darkMode} title='Toggle dark mode' onChange={() => setDarkMode(!darkMode)} />
           </div>
         </div>
         <div className='App-body row'>
