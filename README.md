@@ -5,8 +5,8 @@ RadioX is intended to be hosted on IPFS. The idea is to use a few centralized re
 
 ## ENS Location
 To view the application being hosted on IPFS (InterPlanetary File System) through ENS (Ethereum Naming Service), you can visit:
-- (radiox.eth)[radiox.eth] *This will only resolve on browsers that support ENS, such as Brave and Opera*
-- (https://radiox.eth.link)[https://radiox.eth.link] *This will with any as it is DNS over HTTP*
+- [radiox.eth](radiox.eth) *This will only resolve on browsers that support ENS, such as Brave and Opera*
+- [https://radiox.eth.link](https://radiox.eth.link) *This will with any as it is DNS over HTTP*
 
 
 ## To run 
