@@ -1,41 +1,13 @@
 pragma solidity ^0.8.10;
 import "./ERC721.sol";
 
+/// SPDX-License-Identifier: UNLICENSED
 contract Radio is ERC721 {
     // constructor() public {}
 
     mapping(uint256 => address) private _owners;
     //owners balances
     mapping(address => uint256) private _balances;
-
-    /// @dev This emits when ownership of any NFT changes by any mechanism.
-    ///  This event emits when NFTs are created (`from` == 0) and destroyed
-    ///  (`to` == 0). Exception: during contract creation, any number of NFTs
-    ///  may be created and assigned without emitting Transfer. At the time of
-    ///  any transfer, the approved address for that NFT (if any) is reset to none.
-    // event Transfer(
-    //     address indexed _from,
-    //     address indexed _to,
-    //     uint256 indexed _tokenId
-    // );
-
-    /// @dev This emits when the approved address for an NFT is changed or
-    ///  reaffirmed. The zero address indicates there is no approved address.
-    ///  When a Transfer event emits, this also indicates that the approved
-    ///  address for that NFT (if any) is reset to none.
-    // event Approval(
-    //     address indexed _owner,
-    //     address indexed _approved,
-    //     uint256 indexed _tokenId
-    // );
-
-    /// @dev This emits when an operator is enabled or disabled for an owner.
-    ///  The operator can manage all NFTs of the owner.
-    // event ApprovalForAll(
-    //     address indexed _owner,
-    //     address indexed _operator,
-    //     bool _approved
-    // );
 
     /// @notice Count all NFTs assigned to an owner
     /// @dev NFTs assigned to the zero address are considered invalid, and this
@@ -135,6 +107,7 @@ contract Radio is ERC721 {
         view
         returns (bool)
     {
-        return true;
+        return (_owner == _operator);
+        // return true;
     }
 }

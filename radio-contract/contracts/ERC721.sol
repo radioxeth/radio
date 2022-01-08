@@ -3,6 +3,7 @@ pragma solidity ^0.8.10;
 /// @title ERC-721 Non-Fungible Token Standard
 /// @dev See https://eips.ethereum.org/EIPS/eip-721
 ///  Note: the ERC-165 identifier for this interface is 0x80ac58cd.
+/// SPDX-License-Identifier: UNLICENSED
 /* is ERC165 */
 interface ERC721 {
     /// @dev This emits when ownership of any NFT changes by any mechanism.
