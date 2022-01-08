@@ -5,17 +5,18 @@ import LoadPlaylist from './components/playlist/load';
 import Toggle from './atoms/toggle';
 import Playlist from './components/playlist/playlist';
 import Player from './components/playlist/player';
-
+import { Radio } from './contract'
 function App() {
 
   const playerId = 'player-id'
   const [fileList, setFileList] = useState<File[]>([])
   const [currentSongId, setCurrentSongId] = useState<number>(0)
   const [darkMode, setDarkMode] = useState<boolean>(true)
+  const [contract, setContract] = useState<any>(null)
 
   const _loadPlaylist = () => {
     const input = document.querySelector('input[type=file]') as HTMLInputElement
-    const array = []
+    const array: File[] = []
     if (input && input.files) {
       for (let i = 0; i < input.files.length; ++i) {
         array.push(input.files[i]);
@@ -61,6 +62,7 @@ function App() {
   }
 
   const _play = (idx: number) => {
+    if (fileList.length === 0) return
     try {
       if (idx < 0) {
         idx = fileList.length - 1
@@ -75,7 +77,10 @@ function App() {
   }
 
   useEffect(() => { _play(0) }, [fileList])
-
+  useEffect(() => {
+    Radio.init()
+    setContract(Radio.contract)
+  }, [])
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
       <div className='App-container'>
