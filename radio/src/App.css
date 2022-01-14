@@ -53,7 +53,7 @@ body {
 
 .row{
   display: flex;
- align-content: center;
+  align-content: center;
 }
 
 /* Create three unequal columns that sits next to each other */

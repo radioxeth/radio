@@ -9,16 +9,16 @@ type Props = {
 const Playlist = (props: Props) => {
     const _renderPlayList = () => {
         return (
-            <div >
+            <div className='mb-100'>
                 <ul className={`list ${props.darkMode ? 'dark' : 'light'}`}>
                     {
                         props.fileList.map((file, idx) => {
                             return (
                                 <li
-                                    className={`list-song ${props.currentSongIdx === idx ? 'playing' : ''}`}
+                                    className={`list-item ${props.currentSongIdx === idx ? 'playing' : ''}`}
                                     key={idx}
                                     onClick={() => props.play(idx)}
-                                    id={`list-song-${idx}`}
+                                    id={`list-item-${idx}`}
                                 >
                                     {file.name}
                                 </li>

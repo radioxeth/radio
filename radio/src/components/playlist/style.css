@@ -8,6 +8,8 @@
     border-radius: 45px;
     text-align:center;
     text-justify: inter-word;
+    position: fixed;
+    bottom: 0px;
 }
 
 .player-container>.control{
@@ -69,7 +71,7 @@
     background: rgba(245,245,245, .5);
 }
 
-.list-song{
+.list-item{
     cursor: pointer;
     text-overflow: ellipsis;
     white-space: nowrap;
@@ -77,16 +79,19 @@
     padding-left: 20px;
 }
 
+.directory{
+    list-style-type: disc;
+}
 
-.list-song:hover{
+.list-item:hover{
     cursor: pointer;
 }
-.dark>.list-song:hover{
+.dark>.list-item:hover{
     cursor: pointer;
     color:greenyellow;
 }
 
-.light>.list-song:hover{
+.light>.list-item:hover{
     cursor: pointer;
     color:darkslateblue;
 }
@@ -129,7 +134,7 @@
     border-radius: 5px;
   }
 
-  input[type="file"] {
+  input[class="hidden-file"] {
     display: none;
 }
 .file-upload {

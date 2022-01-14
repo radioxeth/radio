@@ -6,6 +6,9 @@ import Toggle from './atoms/toggle';
 import Playlist from './components/playlist/playlist';
 import Player from './components/playlist/player';
 import { Radio } from './contract'
+import IpfsDirectory from './components/ipfs/ipfsDirectory';
+import { addFileListToIpfs } from './services/ipfsService';
+
 function App() {
 
   const playerId = 'player-id'
@@ -13,8 +16,9 @@ function App() {
   const [currentSongId, setCurrentSongId] = useState<number>(0)
   const [darkMode, setDarkMode] = useState<boolean>(true)
   const [contract, setContract] = useState<any>(null)
+  const [account, setAccount] = useState<any>(null)
 
-  const _loadPlaylist = () => {
+  const _loadPlaylist = async () => {
     const input = document.querySelector('input[type=file]') as HTMLInputElement
     const array: File[] = []
     if (input && input.files) {
@@ -24,6 +28,7 @@ function App() {
       setFileList(array)
     }
   }
+
 
   const _getMusic = (dataUrl: string, idx: number) => {
     const player = document.getElementById(playerId)
@@ -76,17 +81,34 @@ function App() {
     }
   }
 
+  const _loadToIpfs = async () => {
+    addFileListToIpfs(fileList)
+  }
+
+  const _initContract = async () => {
+    await Radio.init()
+    setContract(Radio.contract)
+    console.log(Radio.contract)
+    if (Radio.accounts.length > 0) {
+      setAccount(Radio.accounts[0])
+    }
+  }
+
   useEffect(() => { _play(0) }, [fileList])
   useEffect(() => {
-    Radio.init()
-    setContract(Radio.contract)
+    _initContract()
   }, [])
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
       <div className='App-container'>
         <div className='App-header row'>
           <div className='column side load'>
-            <LoadPlaylist loadPlayList={() => { _loadPlaylist() }} />
+            <table>
+              <tr>
+                <td><LoadPlaylist loadPlayList={() => { _loadPlaylist() }} /></td>
+                <td><button disabled={fileList.length <= 0} onClick={() => _loadToIpfs()}>IPFS</button></td>
+              </tr>
+            </table>
           </div>
           <div className='column middle clock'>
             <Clock />
@@ -97,6 +119,8 @@ function App() {
         </div>
         <div className='App-body row'>
           <div className='column middle'>
+            <IpfsDirectory path='/' prevPath={null} darkMode={darkMode} entries={[]} />
+
             <Playlist
               fileList={fileList}
               play={_play}
