@@ -104,10 +104,12 @@ function App() {
         <div className='App-header row'>
           <div className='column side load'>
             <table>
-              <tr>
-                <td><LoadPlaylist loadPlayList={() => { _loadPlaylist() }} /></td>
-                <td><button disabled={fileList.length <= 0} onClick={() => _loadToIpfs()}>IPFS</button></td>
-              </tr>
+              <tbody>
+                <tr>
+                  <td><LoadPlaylist loadPlayList={() => { _loadPlaylist() }} /></td>
+                  <td><button disabled={fileList.length <= 0} onClick={() => _loadToIpfs()}>IPFS</button></td>
+                </tr>
+              </tbody>
             </table>
           </div>
           <div className='column middle clock'>
@@ -119,7 +121,7 @@ function App() {
         </div>
         <div className='App-body row'>
           <div className='column middle'>
-            <IpfsDirectory path='/' prevPath={null} darkMode={darkMode} entries={[]} />
+            <IpfsDirectory path='/' darkMode={darkMode} entries={[]} />
 
             <Playlist
               fileList={fileList}

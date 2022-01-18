@@ -1,11 +1,11 @@
 import React, {
+    useEffect,
     useState
 } from 'react'
 import { listFilesIpfs } from '../../services/ipfsService'
 
 type Props = {
     path: string,
-    prevPath: string | null,
     darkMode: boolean,
     entries: Entry[]
 }
@@ -16,32 +16,73 @@ type Entry = {
     Hash: string
 }
 const IpfsDirectory = (props: Props) => {
-    const data = { "Entries": [{ "Name": "Distro Radio 0.1.0", "Type": 0, "Size": 0, "Hash": "" }, { "Name": "Vacuum", "Type": 0, "Size": 0, "Hash": "" }, { "Name": "helloWorld", "Type": 0, "Size": 0, "Hash": "" }, { "Name": "minted Vacuum metadata", "Type": 0, "Size": 0, "Hash": "" }] }
+    const [pathStack, setPathStack] = useState<string[]>([])
     const [path, setPath] = useState<string>(props.path)
-    const [prevPath, setPrevPath] = useState<string | null>(props.prevPath)
-    const _handleDirectoryClick = async (entry: Entry) => {
-        const res = await listFilesIpfs(`${props.path}${entry.Name}`)
-        console.log(res)
+    const [entries, setEntries] = useState<Entry[]>([])
+    const _handleForwardDirectoryClick = async (entry: Entry) => {
+        if (entry.Type === 0) {
+
+        } else {
+            pathStack.push(entry.Name)
+            setPathStack(pathStack)
+            setPath(`/${pathStack.join('/')}`)
+        }
+
+
     }
+
+    const _handleBackDirectoryClick = async () => {
+        console.log(path)
+        if (pathStack.length > 0) {
+            pathStack.pop()
+            setPathStack(pathStack)
+            setPath(`/${pathStack.join('/')}`)
+        }
+    }
+
+    const _listFiles = async () => {
+        console.log(path)
+        const res = await listFilesIpfs(path)
+        setEntries(res.Entries)
+    }
+
+    useEffect(() => {
+        _listFiles()
+    }, [path])
+
+    const _renderDirectories = (directories: Entry[]) => {
+
+        return directories.map((entry, idx) => {
+            return (
+                <li
+                    className='list-item'
+                    key={idx}
+                    onClick={() => _handleForwardDirectoryClick(entry)}
+                    id={`list-item-${idx}`}
+                >
+                    {entry.Name}
+                </li>
+            )
+        })
+    }
+
     return (
-        <div className='mt-20'>
-            <ul className={`list ${props.darkMode ? 'dark' : 'light'} mt-100`}>
-                {
-                    data.Entries.map((entry, idx) => {
-                        return (
-                            <li
-                                className='list-item'
-                                key={idx}
-                                onClick={() => _handleDirectoryClick(entry)}
-                                id={`list - item - ${idx}`}
-                            >
-                                {entry.Name}
-                            </li>
-                        )
-                    })
-                }
-            </ul >
-        </div>
+        <div className={`${props.darkMode ? 'dark' : 'light'}`} >
+            <div className='list-container mt-100'>
+                <div
+                    className='list-directory'
+                    onClick={() => _handleBackDirectoryClick()}
+                >
+                    {`/${pathStack.join('/')}<--`}
+                </div>
+                <ul className={`list ${props.darkMode ? 'dark' : 'light'}`}>
+                    {
+                        _renderDirectories(entries)
+                    }
+                </ul >
+            </div>
+
+        </div >
     )
 }
 export default IpfsDirectory

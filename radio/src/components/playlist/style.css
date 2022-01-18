@@ -42,11 +42,21 @@
     background-color: rgba(10,10,10, .05);
 }
 
-.list{
+.list-directory {
+    text-align: left;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    
+}
+
+.list-container{
+    height:50vh;
+    width: 600px;
+}
+
+.list-container>.list{
     list-style-type: none;
     text-align: left;
-    height: 50vh;
-    width: 600px;
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
     padding:0 20px;
@@ -54,10 +64,13 @@
 }
 
 @media (max-width: 600px) {
-    .list {
+    .list-container {
         height: 30vh;
         width: 300px;
         
+    }
+    .list {
+        height: calc(30vh-20px);
     }
 }
 
@@ -79,13 +92,10 @@
     padding-left: 20px;
 }
 
-.directory{
-    list-style-type: disc;
-}
-
 .list-item:hover{
     cursor: pointer;
 }
+
 .dark>.list-item:hover{
     cursor: pointer;
     color:greenyellow;
@@ -94,6 +104,10 @@
 .light>.list-item:hover{
     cursor: pointer;
     color:darkslateblue;
+}
+
+.directory{
+    list-style-type: disc;
 }
 
 .dark>.playing{
