@@ -3,15 +3,14 @@ import React from "react"
 type Props = {
     fileList: File[],
     currentSongIdx: number,
-    play: (idx: number) => void,
-    darkMode?: boolean
+    play: (idx: number) => void
 }
 const Playlist = (props: Props) => {
     const _renderPlayList = () => {
         return (
             <div className='list-container mb-100'>
-                <div className="list-playlist">
-                    <ul className={`list ${props.darkMode ? 'dark' : 'light'}`}>
+                <div className='list-playlist'>
+                    <ul className='list'>
                         {
                             props.fileList.map((file, idx) => {
                                 return (

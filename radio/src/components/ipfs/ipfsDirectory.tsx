@@ -6,7 +6,6 @@ import { listFilesIpfs } from '../../services/ipfsService'
 
 type Props = {
     path: string,
-    darkMode: boolean,
     entries: Entry[]
 }
 type Entry = {
@@ -21,14 +20,12 @@ const IpfsDirectory = (props: Props) => {
     const [entries, setEntries] = useState<Entry[]>([])
     const _handleForwardDirectoryClick = async (entry: Entry) => {
         if (entry.Type === 0) {
-
+            console.log(entry)
         } else {
             pathStack.push(entry.Name)
             setPathStack(pathStack)
             setPath(`/${pathStack.join('/')}`)
         }
-
-
     }
 
     const _handleBackDirectoryClick = async () => {
@@ -67,15 +64,15 @@ const IpfsDirectory = (props: Props) => {
     }
 
     return (
-        <div className={`${props.darkMode ? 'dark' : 'light'}`} >
+        <div>
             <div className='list-container mt-100'>
                 <div
                     className='list-directory'
                     onClick={() => _handleBackDirectoryClick()}
                 >
-                    {`/${pathStack.join('/')}<--`}
+                    {`${pathStack.length > 0 ? '...' : '/'}`}
                 </div>
-                <ul className={`list ${props.darkMode ? 'dark' : 'light'}`}>
+                <ul className='list'>
                     {
                         _renderDirectories(entries)
                     }

@@ -121,13 +121,12 @@ function App() {
         </div>
         <div className='App-body row'>
           <div className='column middle'>
-            <IpfsDirectory path='/' darkMode={darkMode} entries={[]} />
+            <IpfsDirectory path='/' entries={[]} />
 
             <Playlist
               fileList={fileList}
               play={_play}
               currentSongIdx={currentSongId}
-              darkMode={darkMode}
             />
             {fileList.length > 0 &&
               <Player

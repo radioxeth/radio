@@ -51,6 +51,13 @@ body {
   width: 100vw;
 }
 
+.dark .App-header{
+  background: linear-gradient(rgba(10,10,10,  1),rgba(10,10,10, 0)) ;
+}
+.light .App-header{
+  background: rgba(245,245,245, .5);
+}
+
 .row{
   display: flex;
   align-content: center;
