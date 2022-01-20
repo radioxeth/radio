@@ -70,7 +70,7 @@ const IpfsDirectory = (props: Props) => {
                     className='list-directory'
                     onClick={() => _handleBackDirectoryClick()}
                 >
-                    {`${pathStack.length > 0 ? '...' : '/'}`}
+                    {`IPFS Directory: ${pathStack.length > 0 ? pathStack[pathStack.length - 1] : '/'}`}
                 </div>
                 <ul className='list'>
                     {

@@ -35,6 +35,7 @@
     border-radius: 45px
     
 }
+
 .player-container>.prev:hover{
     cursor: pointer;
     background-color: rgba(10,10,10, .05);
@@ -64,9 +65,20 @@
 
 .list-directory{
     text-align: left;
-    border: solid 2px white;
     border-bottom: none;
     padding: 0 20px;
+    border: solid 2px whitesmoke;
+    box-shadow: black 0 0 5px;
+}
+
+.dark .list-directory:hover{
+    color:greenyellow;
+    cursor:pointer;
+}
+
+.light .list-directory:hover{
+    color:darkslateblue;
+    cursor:pointer;
 }
 
 
@@ -107,7 +119,6 @@
     overflow-x: hidden;
     padding-left: 20px;
 }
-
 
 .list-item:hover{
     cursor: pointer;
