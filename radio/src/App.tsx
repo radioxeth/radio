@@ -145,13 +145,11 @@ function App() {
               play={_play}
               currentSongIdx={currentSongId}
             />
-            {fileList.length > 0 &&
-              <Player
-                playNext={() => _play(currentSongId + 1)}
-                playPrev={() => _play(currentSongId - 1)}
-                playerId={playerId}
-              />
-            }
+            <Player
+              playNext={() => _play(currentSongId + 1)}
+              playPrev={() => _play(currentSongId - 1)}
+              playerId={playerId}
+            />
 
           </div>
         </div>

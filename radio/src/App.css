@@ -1,16 +1,16 @@
 .light   {
   background: #eee;
   background: linear-gradient(-45deg, #AE9CD6,#8BB9D4,#A6CFA1,#DAD6A1,#E1B298,#E59CA0);
-	animation: gradient 20s linear infinite;
-  background-size: 400% 400%;
+	animation: gradient 120s linear infinite;
+  background-size: 300% 300%;
   color:black;
 }
 
 .dark { 
   background: #333;
   background: linear-gradient(-45deg, #1A0E2D,#101E33,#072818,#453A02,#462206,#44110A);
-	animation: gradient 20s linear infinite;
-  background-size: 400% 400%;
+	animation: gradient 120s linear infinite;
+  background-size: 200% 200%;
   color:#eee;
 }
 body {
