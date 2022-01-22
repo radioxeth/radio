@@ -17,7 +17,6 @@
     color:black;
     padding-top: 3px;
     border: solid 5px whitesmoke;
-
 }
 
 .player-container>.next{
@@ -107,7 +106,7 @@
 }
 
 .light .list-directory-end:hover{
-    color:darkslateblue;
+    color:purple;
     cursor:pointer;
 }
 
@@ -138,7 +137,7 @@
 
 .light .list-song:hover{
     cursor: pointer;
-    color:darkslateblue;
+    color:purple;
 }
 
 
@@ -160,7 +159,7 @@
 
 .light .list-item:hover{
     cursor: pointer;
-    color:darkslateblue;
+    color:purple;
 }
 
 .dark .playing{
@@ -173,7 +172,7 @@
 .light .playing{
     list-style-type: "\2622";
     list-style-position: inside;
-    color:darkslateblue;
+    color:purple;
     padding-left: 0px;
 }
 
