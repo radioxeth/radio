@@ -7,6 +7,7 @@ import { listFilesIpfs } from '../../services/ipfsService'
 type Props = {
     path: string,
     entries: Entry[]
+    onLoad: any
 }
 type Entry = {
     Name: string,
@@ -18,10 +19,14 @@ const IpfsDirectory = (props: Props) => {
     const [pathStack, setPathStack] = useState<string[]>([])
     const [path, setPath] = useState<string>(props.path)
     const [entries, setEntries] = useState<Entry[]>([])
+    const [directoryHash, setDirectoryHash] = useState<string>("")
+
     const _handleForwardDirectoryClick = async (entry: Entry) => {
         if (entry.Type === 0) {
             console.log(entry)
+            props.onLoad(entry.Hash, `${path}/${entry.Name}`)
         } else {
+            setDirectoryHash(entry.Hash)
             pathStack.push(entry.Name)
             setPathStack(pathStack)
             setPath(`/${pathStack.join('/')}`)
@@ -37,8 +42,13 @@ const IpfsDirectory = (props: Props) => {
         }
     }
 
-    const _listFiles = async () => {
+    const _handleLoadDirectoryClick = async () => {
+        console.log(directoryHash)
         console.log(path)
+        props.onLoad(directoryHash, path)
+    }
+
+    const _listFiles = async () => {
         const res = await listFilesIpfs(path)
         setEntries(res.Entries)
     }
@@ -52,7 +62,7 @@ const IpfsDirectory = (props: Props) => {
         return directories.map((entry, idx) => {
             return (
                 <li
-                    className='list-item'
+                    className={`list-item ${entry.Type === 1 ? 'file-item' : 'data-item'}`}
                     key={idx}
                     onClick={() => _handleForwardDirectoryClick(entry)}
                     id={`list-item-${idx}`}
@@ -66,11 +76,24 @@ const IpfsDirectory = (props: Props) => {
     return (
         <div>
             <div className='list-container mt-100'>
-                <div
-                    className='list-directory'
-                    onClick={() => _handleBackDirectoryClick()}
-                >
-                    {`IPFS Directory: ${pathStack.length > 0 ? pathStack[pathStack.length - 1] : '/'}`}
+                <div className='list-directory-header'>
+                    <div
+                        className='list-directory-end left'
+                    >
+                        <span onClick={() => _handleBackDirectoryClick()}>&#8617;</span>
+                        {/* <span onClick={() => _listFiles()}>&#8635;</span> */}
+                    </div>
+                    <div
+                        className='list-directory-current'
+                    >
+                        &#x1F4C1;<i>{`${pathStack.length > 0 ? pathStack[pathStack.length - 1] : '/'}`}</i>
+                    </div>
+                    <div
+                        className='list-directory-end right'
+                        onClick={() => _handleLoadDirectoryClick()}
+                    >
+                        Load
+                    </div>
                 </div>
                 <ul className='list'>
                     {

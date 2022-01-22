@@ -55,7 +55,7 @@ body {
   background: linear-gradient(rgba(10,10,10,  1),rgba(10,10,10, 0)) ;
 }
 .light .App-header{
-  background: rgba(245,245,245, .5);
+  background: linear-gradient(rgba(245,245,245, 1),rgba(245,245,245,0));
 }
 
 .row{

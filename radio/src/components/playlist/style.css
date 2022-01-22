@@ -33,7 +33,6 @@
 
 .player-container>.prev{
     border-radius: 45px
-    
 }
 
 .player-container>.prev:hover{
@@ -55,28 +54,59 @@
 }
 
 
+.list-directory-header{
+    text-align: left;
+    padding: 0 20px;
+    border: solid 2px whitesmoke;
+    border-bottom: none;
+    box-shadow: black 0 0 5px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.list-directory-header > .list-directory-current{
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    width: 100%;
+}
+
+.list-directory-header > .list-directory-side{
+    width: 50px;
+}
+
+.file-item{
+    list-style-type:"\1F4C2";
+    list-style-position:inside;
+}
+
+.data-item{
+    list-style-type: "\1F4BF";
+    list-style-position: inside;
+}
+
 @media (max-width: 600px) {
     .list {
         height: 30vh;
         width: 300px;
         
     }
+    .list-directory{
+        width: 300px; 
+    }
+    .list-directory-header{
+        width: 300px;
+    }
 }
 
-.list-directory{
-    text-align: left;
-    border-bottom: none;
-    padding: 0 20px;
-    border: solid 2px whitesmoke;
-    box-shadow: black 0 0 5px;
-}
-
-.dark .list-directory:hover{
+.dark .list-directory-end:hover{
     color:greenyellow;
     cursor:pointer;
 }
 
-.light .list-directory:hover{
+.light .list-directory-end:hover{
     color:darkslateblue;
     cursor:pointer;
 }

@@ -7,7 +7,11 @@ import Playlist from './components/playlist/playlist';
 import Player from './components/playlist/player';
 import { Radio } from './contract'
 import IpfsDirectory from './components/ipfs/ipfsDirectory';
-import { addFileListToIpfs } from './services/ipfsService';
+import {
+  addFileListToIpfs,
+  getDirectory,
+  getFilesStat
+} from './services/ipfsService';
 
 function App() {
 
@@ -93,6 +97,16 @@ function App() {
       setAccount(Radio.accounts[0])
     }
   }
+  const _onLoadDirectory = async (hash: string, path: string) => {
+    const res = await getFilesStat(path)
+    console.log(res)
+    // const res = await getDirectory(hash)
+    // if (res) {
+    //   const blob = new Blob([res['data']], { type: 'file' })
+    // }
+
+
+  }
 
   useEffect(() => { _play(0) }, [fileList])
   useEffect(() => {
@@ -121,7 +135,10 @@ function App() {
         </div>
         <div className='App-body row'>
           <div className='column middle'>
-            <IpfsDirectory path='/' entries={[]} />
+            <IpfsDirectory
+              path='/'
+              entries={[]}
+              onLoad={_onLoadDirectory} />
 
             <Playlist
               fileList={fileList}
