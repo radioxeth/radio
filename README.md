@@ -1,4 +1,4 @@
-# RadioX
+# radiox.eth
 ## Distributed Radio
 Currently this app can be used to load and play music in a browser. It is very basic.
 Radiox is intended to be hosted on IPFS. The idea is to use as few centralized resources as possible and practical. This may involve removing node packages and using vanilla JavasSript without libraries and frameworks. There are plans to incorporate users via wallet addresses (ethereum) and to allow users to share and stream media.
