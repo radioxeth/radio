@@ -24,6 +24,8 @@ function App() {
     }
   }
 
+  //TODO
+  //refactor this to its own component
   const _getMusic = (dataUrl: string, idx: number) => {
     const player = document.getElementById(playerId)
     if (player) {
