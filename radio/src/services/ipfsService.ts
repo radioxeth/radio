@@ -49,7 +49,7 @@ export const getFilesStat = async (filePath: string) => {
 export const getDirectory = async (directoryHash: string, playListName: string = 'playlist') => {
     const config = {
         headers: {
-            'content-type': 'blob',
+            'content-type': 'blob'
         }
     }
     try {
@@ -68,6 +68,26 @@ export const getDirectory = async (directoryHash: string, playListName: string =
 export const listFilesIpfs = async (directory: string = '/') => {
     try {
         const res = await axios.post(`http://127.0.0.1:5001/api/v0/files/ls?arg=${directory}&long=true`)
+        if (res.data) {
+            return res.data
+        }
+        else return {}
+    }
+    catch (e) {
+        console.error(e)
+        return null
+    }
+}
+
+export const catCid = async (hash: string, filename: string) => {
+    try {
+        const config = {
+            headers: {
+                'Content-Type': 'audio/mpeg',
+                'Content-Disposition': filename
+            }
+        }
+        const res = await axios.post(`http://127.0.0.1:5001/api/v0/get?arg=${hash}`, config)
         if (res.data) {
             return res.data
         }

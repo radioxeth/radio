@@ -9,8 +9,8 @@ import { Radio } from './contract'
 import IpfsDirectory from './components/ipfs/ipfsDirectory';
 import {
   addFileListToIpfs,
-  getDirectory,
-  getFilesStat
+  catCid,
+  listFilesIpfs
 } from './services/ipfsService';
 
 function App() {
@@ -21,11 +21,13 @@ function App() {
   const [darkMode, setDarkMode] = useState<boolean>(true)
   const [contract, setContract] = useState<any>(null)
   const [account, setAccount] = useState<any>(null)
+  const [du, setDu] = useState<any>(null)
 
   const _loadPlaylist = async () => {
     const input = document.querySelector('input[type=file]') as HTMLInputElement
     const array: File[] = []
     if (input && input.files) {
+      console.log(input.files)
       for (let i = 0; i < input.files.length; ++i) {
         array.push(input.files[i]);
       }
@@ -35,6 +37,8 @@ function App() {
 
 
   const _getMusic = (dataUrl: string, idx: number) => {
+    console.log(dataUrl, idx)
+    if (!dataUrl) return
     const player = document.getElementById(playerId)
     if (player) {
       if (player.children) {
@@ -54,7 +58,6 @@ function App() {
       soundFile.onended = () => _play(idx)
       soundFile.appendChild(source)
       player.appendChild(soundFile)
-
       soundFile.load()
       soundFile.play()
     }
@@ -85,10 +88,6 @@ function App() {
     }
   }
 
-  const _loadToIpfs = async () => {
-    addFileListToIpfs(fileList)
-  }
-
   const _initContract = async () => {
     await Radio.init()
     setContract(Radio.contract)
@@ -97,34 +96,38 @@ function App() {
       setAccount(Radio.accounts[0])
     }
   }
+
   const _onLoadDirectory = async (hash: string, path: string) => {
-    const res = await getFilesStat(path)
-    console.log(res)
-    // const res = await getDirectory(hash)
-    // if (res) {
-    //   const blob = new Blob([res['data']], { type: 'file' })
-    // }
+    const res = await listFilesIpfs(path)
+    if (res && res.Entries) {
+      let array: File[] = []
 
-
+      const file = await catCid(res.Entries[0].Hash, res.Entries[0].Name)
+      const fileBlob = new File([file], res.Entries[0].Name, { type: 'audio/mpeg' });
+      array.push(fileBlob)
+      // _getMusic(file, 0)
+      // for (let i = 0; i < res.Entries.length; ++i) {
+      //   const file = await catCid(res.Entries[i].Hash, res.Entries[i].Name)
+      //   const fileBlob = new File([file], res.Entries[i].Name);
+      //   array.push(fileBlob)
+      // }
+      console.log(fileBlob)
+      setFileList(array);
+    }
   }
 
-  useEffect(() => { _play(0) }, [fileList])
+  // useEffect(() => { _play(0) }, [fileList])
+
   useEffect(() => {
-    _initContract()
+    // _initContract()
   }, [])
+
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
       <div className='App-container'>
         <div className='App-header row'>
           <div className='column side load'>
-            <table>
-              <tbody>
-                <tr>
-                  <td><LoadPlaylist loadPlayList={() => { _loadPlaylist() }} /></td>
-                  <td><button disabled={fileList.length <= 0} onClick={() => _loadToIpfs()}>IPFS</button></td>
-                </tr>
-              </tbody>
-            </table>
+            <LoadPlaylist loadPlayList={() => { _loadPlaylist() }} />
           </div>
           <div className='column middle clock'>
             <Clock />
@@ -149,8 +152,8 @@ function App() {
               playNext={() => _play(currentSongId + 1)}
               playPrev={() => _play(currentSongId - 1)}
               playerId={playerId}
+              src={du}
             />
-
           </div>
         </div>
 

@@ -8,7 +8,7 @@ type Props = {
 const Playlist = (props: Props) => {
     const _renderPlayList = () => {
         return (
-            <div className='list-container mb-100'>
+            <div className='list-container'>
                 <div className='list-playlist'>
                     <ul className='list'>
                         {

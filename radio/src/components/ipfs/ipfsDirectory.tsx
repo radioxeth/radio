@@ -50,7 +50,10 @@ const IpfsDirectory = (props: Props) => {
 
     const _listFiles = async () => {
         const res = await listFilesIpfs(path)
-        setEntries(res.Entries)
+        if (res && res.Entries) {
+            setEntries(res.Entries)
+        }
+
     }
 
     useEffect(() => {
@@ -74,35 +77,31 @@ const IpfsDirectory = (props: Props) => {
     }
 
     return (
-        <div>
-            <div className='list-container mt-100'>
-                <div className='list-directory-header'>
-                    <div
-                        className='list-directory-end left'
-                    >
-                        <span onClick={() => _handleBackDirectoryClick()}>&#8617;</span>
-                        {/* <span onClick={() => _listFiles()}>&#8635;</span> */}
-                    </div>
-                    <div
-                        className='list-directory-current'
-                    >
-                        &#x1F4C1;<i>{`${pathStack.length > 0 ? pathStack[pathStack.length - 1] : '/'}`}</i>
-                    </div>
-                    <div
-                        className='list-directory-end right'
-                        onClick={() => _handleLoadDirectoryClick()}
-                    >
-                        Load
-                    </div>
+        <div className='list-container'>
+            <div className='list-directory-header'>
+                <div
+                    className='list-directory-end left'
+                >
+                    <span onClick={() => _handleBackDirectoryClick()}>&#8617;</span>
                 </div>
-                <ul className='list'>
-                    {
-                        _renderDirectories(entries)
-                    }
-                </ul >
+                <div
+                    className='list-directory-current'
+                >
+                    &#x1F4C1;<i>{`${pathStack.length > 0 ? pathStack[pathStack.length - 1] : '/'}`}</i>
+                </div>
+                <div
+                    className='list-directory-end right'
+                    onClick={() => _handleLoadDirectoryClick()}
+                >
+                    Load
+                </div>
             </div>
-
-        </div >
+            <ul className='list'>
+                {
+                    _renderDirectories(entries)
+                }
+            </ul >
+        </div>
     )
 }
 export default IpfsDirectory

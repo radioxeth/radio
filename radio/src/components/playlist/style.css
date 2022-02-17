@@ -1,67 +1,88 @@
 
 .player-container{
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    background-color: whitesmoke;
     padding-top: 3px;
     border-radius: 45px;
-    text-align:center;
-    text-justify: inter-word;
 }
 
-.player-container>.control{
-    height: 45px;
-    width: 45px;
-    border-radius: 45px;
+.player-container .control{
+    height: 42px;
+    width: 100px;
+    border: solid 2px whitesmoke;
+    box-shadow: black 0 0 5px;
+    text-align: center;
+}
+
+.dark .player-container .control{
+    color:white;
+    background-color: rgba(10, 10, 10, .5);
+}
+
+.light .player-container .control{
     color:black;
-    padding-top: 3px;
-    border: solid 5px whitesmoke;
+    background-color: rgba(245, 245, 245, .5);
 }
 
-.player-container>.next{
-    right:0px;
-    border-radius: 45px;
-
+.player .prev{
+    border-radius: 42px 0px 42px 10px;
+    box-shadow: none;
 }
 
-.player-container>.next:hover{
+.player .next{
+    border-radius: 0px 42px 10px 42px;
+    box-shadow: none;
+}
+
+.light .player-container .next:hover{
     cursor: pointer;
-    background-color: rgba(10,10,10, .05);
+    background-color: rgba(10,10,10, .5);
+    color:black;
 }
-
-.player-container>.prev{
-    border-radius: 45px
-}
-
-.player-container>.prev:hover{
+.light .player-container .prev:hover{
     cursor: pointer;
-    background-color: rgba(10,10,10, .05);
+    background-color: rgba(10,10,10, .5);
+    color:black;
 }
 
+.dark .player-container .next:hover{
+    cursor: pointer;
+    background-color: rgba(245,245,245, .5);
+    color:black;
+}
+.dark .player-container .prev:hover{
+    cursor: pointer;
+    background-color: rgba(245,245,245, .5);
+    color:black;
+}
 
 .list{
     list-style-type: none;
+    list-style-position:inside;
     text-align: left;
     height: 50vh;
     width: 600px;
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
-    padding:0 20px;
     margin-top: 0;
+    padding-left: 20px;
+    padding-right: 20px;
     overflow-y: auto;
 }
 
 
 .list-directory-header{
     text-align: left;
-    padding: 0 20px;
     border: solid 2px whitesmoke;
     border-bottom: none;
     box-shadow: black 0 0 5px;
     width: 600px;
     display: flex;
     justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 
 .list-directory-header > .list-directory-current{
@@ -86,17 +107,31 @@
     list-style-position: inside;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 700px) {
     .list {
         height: 30vh;
-        width: 300px;
+        width: 400px;
         
     }
     .list-directory{
-        width: 300px; 
+        width: 400px 
     }
     .list-directory-header{
-        width: 300px;
+        width: 400px;
+    }
+}
+
+@media (max-width: 450px) {
+    .list {
+        height: 30vh;
+        width: 350px;
+        
+    }
+    .list-directory{
+        width: 350px 
+    }
+    .list-directory-header{
+        width: 350px;
     }
 }
 
@@ -125,7 +160,6 @@
     overflow-x: hidden;
     padding-left: 20px;
 }
-
 
 .list-song:hover{
     cursor: pointer;
