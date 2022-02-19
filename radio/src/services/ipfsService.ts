@@ -84,7 +84,9 @@ export const catCid = async (hash: string, filename: string) => {
         const config = {
             headers: {
                 'Content-Type': 'audio/mpeg',
-                'Content-Disposition': filename
+                'Content-Disposition': filename,
+                'Accept-Encoding': 'gzip, deflate, br',
+                'Connection': 'keep-alive'
             }
         }
         const res = await axios.post(`http://127.0.0.1:5001/api/v0/get?arg=${hash}`, config)
@@ -97,6 +99,43 @@ export const catCid = async (hash: string, filename: string) => {
         console.error(e)
         return null
     }
+}
+
+export const readFile = async (filePath: string, filename: string) => {
+    try {
+        const url = `http://127.0.0.1:5001/api/v0/files/read?arg=${filePath}/${filename}`
+        const results = await makeRequest('POST', url)
+        return results
+    }
+    catch (e) {
+        console.error(e)
+        return null
+    }
+}
+
+const makeRequest = async (method, url) => {
+    return new Promise<ArrayBuffer>((resolve, reject) => {
+        let xhr = new XMLHttpRequest();
+        xhr.responseType = 'arraybuffer'
+        xhr.open(method, url);
+        xhr.onload = () => {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                resolve(xhr.response);
+            } else {
+                reject({
+                    status: xhr.status,
+                    statusText: xhr.statusText
+                });
+            }
+        };
+        xhr.onerror = () => {
+            reject({
+                status: xhr.status,
+                statusText: xhr.statusText
+            });
+        };
+        xhr.send();
+    });
 }
 
 export const listFileIpfs = async (directory: string = '/') => {

@@ -10,7 +10,8 @@ import IpfsDirectory from './components/ipfs/ipfsDirectory';
 import {
   addFileListToIpfs,
   catCid,
-  listFilesIpfs
+  listFilesIpfs,
+  readFile
 } from './services/ipfsService';
 
 function App() {
@@ -37,7 +38,6 @@ function App() {
 
 
   const _getMusic = (dataUrl: string, idx: number) => {
-    console.log(dataUrl, idx)
     if (!dataUrl) return
     const player = document.getElementById(playerId)
     if (player) {
@@ -48,7 +48,6 @@ function App() {
       }
       const source = document.createElement("source")
       source.src = dataUrl
-
       const soundFile = document.createElement("audio")
       soundFile.preload = "auto"
       soundFile.controls = true
@@ -64,6 +63,8 @@ function App() {
   }
 
   const _readFile = (event: any, idx: number) => {
+    console.log(event)
+    console.log(fileList[idx])
     _getMusic(event.target.result, idx)
   }
 
@@ -101,18 +102,21 @@ function App() {
     const res = await listFilesIpfs(path)
     if (res && res.Entries) {
       let array: File[] = []
+      for (let i = 0; i < res.Entries.length; ++i) {
+        readFile(path, res.Entries[i].Name).then((file) => {
+          if (file) {
+            const fileBlob = new File([file], res.Entries[i].Name, { type: 'audio/mpeg' });
+            array.push(fileBlob)
 
-      const file = await catCid(res.Entries[0].Hash, res.Entries[0].Name)
-      const fileBlob = new File([file], res.Entries[0].Name, { type: 'audio/mpeg' });
-      array.push(fileBlob)
-      // _getMusic(file, 0)
-      // for (let i = 0; i < res.Entries.length; ++i) {
-      //   const file = await catCid(res.Entries[i].Hash, res.Entries[i].Name)
-      //   const fileBlob = new File([file], res.Entries[i].Name);
-      //   array.push(fileBlob)
-      // }
-      console.log(fileBlob)
-      setFileList(array);
+          }
+        })
+
+      }
+      setFileList(array)
+      if (array.length > 0) {
+        _play(0)
+
+      }
     }
   }
 
@@ -122,6 +126,28 @@ function App() {
     // _initContract()
   }, [])
 
+  const _renderPlayer = (files) => {
+    return (
+      <>
+        <IpfsDirectory
+          path='/'
+          entries={[]}
+          onLoad={_onLoadDirectory} />
+
+        <Playlist
+          fileList={files}
+          play={_play}
+          currentSongIdx={currentSongId}
+        />
+        <Player
+          playNext={() => _play(currentSongId + 1)}
+          playPrev={() => _play(currentSongId - 1)}
+          playerId={playerId}
+          src={du}
+        />
+      </>
+    )
+  }
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
       <div className='App-container'>
@@ -138,22 +164,7 @@ function App() {
         </div>
         <div className='App-body row'>
           <div className='column middle'>
-            <IpfsDirectory
-              path='/'
-              entries={[]}
-              onLoad={_onLoadDirectory} />
-
-            <Playlist
-              fileList={fileList}
-              play={_play}
-              currentSongIdx={currentSongId}
-            />
-            <Player
-              playNext={() => _play(currentSongId + 1)}
-              playPrev={() => _play(currentSongId - 1)}
-              playerId={playerId}
-              src={du}
-            />
+            {_renderPlayer(fileList)}
           </div>
         </div>
 
