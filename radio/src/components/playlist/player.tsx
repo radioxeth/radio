@@ -21,6 +21,7 @@ const Player = (props: Props) => {
             </div>
             <div className='player row direct'>
                 <div className='prev control' onClick={props.playPrev}><b>{'<<'}</b></div>
+                <div>play</div>
                 <div className='next control' onClick={props.playNext}><b>{'>>'}</b></div>
             </div>
 

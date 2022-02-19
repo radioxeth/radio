@@ -103,24 +103,23 @@ function App() {
     if (res && res.Entries) {
       let array: File[] = []
       for (let i = 0; i < res.Entries.length; ++i) {
-        readFile(path, res.Entries[i].Name).then((file) => {
-          if (file) {
-            const fileBlob = new File([file], res.Entries[i].Name, { type: 'audio/mpeg' });
-            array.push(fileBlob)
-
-          }
-        })
+        const file = await readFile(path, res.Entries[i].Name)
+        if (file) {
+          const fileBlob = new File([file], res.Entries[i].Name, { type: 'audio/mpeg' });
+          array.push(fileBlob)
+        }
 
       }
       setFileList(array)
-      if (array.length > 0) {
-        _play(0)
 
-      }
     }
   }
 
-  // useEffect(() => { _play(0) }, [fileList])
+  useEffect(() => {
+    if (fileList.length > 0) {
+      _play(0)
+    }
+  }, [fileList])
 
   useEffect(() => {
     // _initContract()
