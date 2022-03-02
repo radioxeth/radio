@@ -8,8 +8,6 @@ import Player from './components/playlist/player';
 import { Radio } from './contract'
 import IpfsDirectory from './components/ipfs/ipfsDirectory';
 import {
-  addFileListToIpfs,
-  catCid,
   listFilesIpfs,
   readFile
 } from './services/ipfsService';
