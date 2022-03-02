@@ -1,16 +1,16 @@
 .light   {
   background: #eee;
   background: linear-gradient(-45deg, #AE9CD6,#8BB9D4,#A6CFA1,#DAD6A1,#E1B298,#E59CA0);
-	animation: gradient 20s linear infinite;
-  background-size: 400% 400%;
+	animation: gradient 120s linear infinite;
+  background-size: 300% 300%;
   color:black;
 }
 
 .dark { 
   background: #333;
   background: linear-gradient(-45deg, #1A0E2D,#101E33,#072818,#453A02,#462206,#44110A);
-	animation: gradient 20s linear infinite;
-  background-size: 400% 400%;
+	animation: gradient 120s linear infinite;
+  background-size: 200% 200%;
   color:#eee;
 }
 body {
@@ -46,35 +46,37 @@ body {
 }
 
 .App-header{
-  top:0;
-  position: fixed;
-  width: 100vw;
+  width: 100%;
+}
+
+.App-body{
+  align-items: center;
+}
+
+.dark .App-header{
+  background: linear-gradient(rgba(10,10,10,  1),rgba(10,10,10, 0)) ;
+}
+.light .App-header{
+  background: linear-gradient(rgba(245,245,245, 1),rgba(245,245,245,0));
 }
 
 .row{
   display: flex;
- align-content: center;
+  flex-wrap: wrap;
 }
 
-/* Create three unequal columns that sits next to each other */
 .column {
-  padding: 10px;
-}
-
-/* Left and right column */
-.column.side {
-   -webkit-flex: 1;
-   -ms-flex: 1;
-   flex: 1;
+  padding: 20px;
 }
 
 /* Middle column */
 .column.middle {
-  -webkit-flex: 2;
-  -ms-flex: 2;
-  flex: 2;
+  -webkit-flex: 1;
+  -ms-flex: 1;
+  flex: 1;
 }
-@media (max-width: 600px) {
+
+@media (max-width: 700px) {
   .row {
     -webkit-flex-direction: column;
     flex-direction: column;

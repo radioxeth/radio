@@ -1,4 +1,4 @@
-const Radio = artifacts.require("Radio");
+const Radio = artifacts.require("RadioNFT");
 
 module.exports = function (deployer) {
     deployer.deploy(Radio);

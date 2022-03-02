@@ -9,8 +9,9 @@ const LoadPlaylist = (props: Props) => {
         <div>
             <label className='file-upload'>
                 <input
+                    className='hidden-file'
                     type="file"
-                    accept="audio/mp3"
+                    accept="audio/*"
                     name="inputfile"
                     id="inputfile"
                     multiple

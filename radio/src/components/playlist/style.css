@@ -1,71 +1,173 @@
 
 .player-container{
     display: flex;
-    flex-wrap: nowrap;
+    flex-direction: column;
+    align-items: center;
     justify-content: center;
-    background-color: whitesmoke;
     padding-top: 3px;
     border-radius: 45px;
-    text-align:center;
-    text-justify: inter-word;
 }
 
-.player-container>.control{
-    height: 45px;
-    width: 45px;
-    border-radius: 45px;
+.player-container .control{
+
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 50px;
+    border: solid 2px whitesmoke;
+    box-shadow: black 0 0 5px;
+    text-align: center;
+}
+
+.dark .player-container .control{
+    color:white;
+    background-color: rgba(10, 10, 10, .5);
+}
+
+.light .player-container .control{
     color:black;
-    padding-top: 3px;
-    border: solid 5px whitesmoke;
-
+    background-color: rgba(245, 245, 245, .5);
 }
 
-.player-container>.next{
-    right:0px;
-    border-radius: 45px;
-
+.player .prev{
+    border-right: 0;
+    box-shadow: none;
 }
 
-.player-container>.next:hover{
+.player .next{
+    border-left: 0;
+    box-shadow: none;
+}
+
+.player .play-pause{
+    border-left: 0;
+    border-right: 0;
+    box-shadow: none;
+}
+
+.light .player-container .next:hover{
     cursor: pointer;
-    background-color: rgba(10,10,10, .05);
+    background-color: rgba(10,10,10, .5);
+    color:black;
+}
+.light .player-container .prev:hover{
+    cursor: pointer;
+    background-color: rgba(10,10,10, .5);
+    color:black;
+}
+.light .player-container .play-pause:hover{
+    cursor: pointer;
+    background-color: rgba(10,10,10, .5);
+    color:black;
 }
 
-.player-container>.prev{
-    border-radius: 45px
-    
-}
-.player-container>.prev:hover{
+.dark .player-container .next:hover{
     cursor: pointer;
-    background-color: rgba(10,10,10, .05);
+    background-color: rgba(245,245,245, .5);
+    color:black;
+}
+.dark .player-container .prev:hover{
+    cursor: pointer;
+    background-color: rgba(245,245,245, .5);
+    color:black;
+}
+.dark .player-container .play-pause:hover{
+    cursor: pointer;
+    background-color: rgba(245,245,245, .5);
+    color:black;
 }
 
 .list{
     list-style-type: none;
+    list-style-position:inside;
     text-align: left;
     height: 50vh;
     width: 600px;
     border: solid 2px whitesmoke;
     box-shadow: black 0px 0px 5px;
-    padding:0 20px;
+    margin-top: 0;
+    padding-left: 20px;
+    padding-right: 20px;
     overflow-y: auto;
 }
 
-@media (max-width: 600px) {
+
+.list-directory-header{
+    text-align: left;
+    border: solid 2px whitesmoke;
+    border-bottom: none;
+    box-shadow: black 0 0 5px;
+    width: 600px;
+    display: flex;
+    justify-content: space-between;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.list-directory-header > .list-directory-current{
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    text-align: left;
+    width: 100%;
+}
+
+.list-directory-header > .list-directory-side{
+    width: 50px;
+}
+
+.file-item{
+    list-style-type:"\1F4C2";
+    list-style-position:inside;
+}
+
+.data-item{
+    list-style-type: "\1F4BF";
+    list-style-position: inside;
+}
+
+@media (max-width: 700px) {
     .list {
         height: 30vh;
-        width: 300px;
+        width: 400px;
         
+    }
+    .list-directory{
+        width: 400px 
+    }
+    .list-directory-header{
+        width: 400px;
     }
 }
 
+@media (max-width: 450px) {
+    .list {
+        height: 30vh;
+        width: 350px;
+        
+    }
+    .list-directory{
+        width: 350px 
+    }
+    .list-directory-header{
+        width: 350px;
+    }
+}
+
+.dark .list-directory-end:hover{
+    color:greenyellow;
+    cursor:pointer;
+}
+
+.light .list-directory-end:hover{
+    color:purple;
+    cursor:pointer;
+}
 
 
-
-.list.dark{
+.dark .list{
     background: rgba(10,10,10, .5);
 }
-.list.light{
+.light .list{
     background: rgba(245,245,245, .5);
 }
 
@@ -77,31 +179,52 @@
     padding-left: 20px;
 }
 
-
 .list-song:hover{
     cursor: pointer;
 }
-.dark>.list-song:hover{
+.dark .list-song:hover{
     cursor: pointer;
     color:greenyellow;
 }
 
-.light>.list-song:hover{
+.light .list-song:hover{
     cursor: pointer;
-    color:darkslateblue;
+    color:purple;
 }
 
-.dark>.playing{
+
+.list-item{
+    cursor: pointer;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow-x: hidden;
+    padding-left: 20px;
+}
+
+.list-item:hover{
+    cursor: pointer;
+}
+.dark .list-item:hover{
+    cursor: pointer;
+    color:greenyellow;
+}
+
+.light .list-item:hover{
+    cursor: pointer;
+    color:purple;
+}
+
+.dark .playing{
     list-style-type: "\2622";
     list-style-position: inside;
     color:greenyellow;
     padding-left: 0px;
 }
 
-.light>.playing{
+.light .playing{
     list-style-type: "\2622";
     list-style-position: inside;
-    color:darkslateblue;
+    color:purple;
     padding-left: 0px;
 }
 

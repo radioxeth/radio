@@ -5,6 +5,14 @@ import LoadPlaylist from './components/playlist/load';
 import Toggle from './atoms/toggle';
 import Playlist from './components/playlist/playlist';
 import Player from './components/playlist/player';
+import { Radio } from './contract'
+import IpfsDirectory from './components/ipfs/ipfsDirectory';
+import {
+  addFileListToIpfs,
+  catCid,
+  listFilesIpfs,
+  readFile
+} from './services/ipfsService';
 
 function App() {
 
@@ -12,10 +20,12 @@ function App() {
   const [fileList, setFileList] = useState<File[]>([])
   const [currentSongId, setCurrentSongId] = useState<number>(0)
   const [darkMode, setDarkMode] = useState<boolean>(true)
+  const [contract, setContract] = useState<any>(null)
+  const [account, setAccount] = useState<any>(null)
 
-  const _loadPlaylist = () => {
+  const _loadPlaylist = async () => {
     const input = document.querySelector('input[type=file]') as HTMLInputElement
-    const array = []
+    const array: File[] = []
     if (input && input.files) {
       for (let i = 0; i < input.files.length; ++i) {
         array.push(input.files[i]);
@@ -24,59 +34,39 @@ function App() {
     }
   }
 
-  //TODO
-  //refactor this to its own component
-  const _getMusic = (dataUrl: string, idx: number) => {
-    const player = document.getElementById(playerId)
-    if (player) {
-      if (player.children) {
-        for (let i = 0; i < player.children.length; ++i) {
-          player.removeChild(player.children[i])
+  const _initContract = async () => {
+    await Radio.init()
+    setContract(Radio.contract)
+    console.log(Radio.contract)
+    if (Radio.accounts.length > 0) {
+      setAccount(Radio.accounts[0])
+    }
+  }
+
+  const _onLoadDirectory = async (hash: string, path: string) => {
+    const res = await listFilesIpfs(path)
+    if (res && res.Entries) {
+      let array: File[] = []
+      for (let i = 0; i < res.Entries.length; ++i) {
+        const file = await readFile(path, res.Entries[i].Name)
+        if (file) {
+          const fileBlob = new File([file], res.Entries[i].Name, { type: 'audio/mpeg' });
+          array.push(fileBlob)
         }
       }
-      const source = document.createElement("source")
-      source.src = dataUrl
-
-      const soundFile = document.createElement("audio")
-      soundFile.preload = "auto"
-      soundFile.controls = true
-      soundFile.volume = 1
-      idx++;
-      if (idx > fileList.length) idx = 0
-      soundFile.onended = () => _play(idx)
-      soundFile.appendChild(source)
-      player.appendChild(soundFile)
-
-      soundFile.load()
-      soundFile.play()
+      setFileList(array)
     }
   }
 
-  const _readFile = (event: any, idx: number) => {
-    _getMusic(event.target.result, idx)
-  }
-
-  const _changeFile = (idx: number) => {
-    const reader = new FileReader()
-    reader.addEventListener('load', (e) => _readFile(e, idx))
-    reader.readAsDataURL(fileList[idx])
-  }
-
-  const _play = (idx: number) => {
-    try {
-      if (idx < 0) {
-        idx = fileList.length - 1
-      } else if (idx > fileList.length - 1) {
-        idx = 0
-      }
-      setCurrentSongId(idx)
-      _changeFile(idx)
-    } catch (e) {
-      console.log(e)
+  useEffect(() => {
+    if (fileList.length > 0) {
+      // _play(0)
     }
-  }
+  }, [fileList])
 
-  useEffect(() => { _play(0) }, [fileList])
+  useEffect(() => {
+    // _initContract()
+  }, [])
 
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>
@@ -94,20 +84,22 @@ function App() {
         </div>
         <div className='App-body row'>
           <div className='column middle'>
+            <IpfsDirectory
+              path='/'
+              entries={[]}
+              onLoad={_onLoadDirectory} />
+
             <Playlist
               fileList={fileList}
-              play={_play}
+              play={setCurrentSongId}
               currentSongIdx={currentSongId}
-              darkMode={darkMode}
             />
-            {fileList.length > 0 &&
-              <Player
-                playNext={() => _play(currentSongId + 1)}
-                playPrev={() => _play(currentSongId - 1)}
-                playerId={playerId}
-              />
-            }
-
+            <Player
+              playList={fileList}
+              currentSongIdx={currentSongId}
+              playerId={playerId}
+              onIdxChange={setCurrentSongId}
+            />
           </div>
         </div>
 
