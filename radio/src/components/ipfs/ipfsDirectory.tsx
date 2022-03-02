@@ -20,10 +20,10 @@ const IpfsDirectory = (props: Props) => {
     const [path, setPath] = useState<string>(props.path)
     const [entries, setEntries] = useState<Entry[]>([])
     const [directoryHash, setDirectoryHash] = useState<string>("")
+    const [showList, setShowList] = useState<boolean>(true)
 
     const _handleForwardDirectoryClick = async (entry: Entry) => {
         if (entry.Type === 0) {
-            console.log(entry)
             props.onLoad(entry.Hash, `${path}/${entry.Name}`)
         } else {
             setDirectoryHash(entry.Hash)
@@ -34,7 +34,6 @@ const IpfsDirectory = (props: Props) => {
     }
 
     const _handleBackDirectoryClick = async () => {
-        console.log(path)
         if (pathStack.length > 0) {
             pathStack.pop()
             setPathStack(pathStack)
@@ -43,8 +42,6 @@ const IpfsDirectory = (props: Props) => {
     }
 
     const _handleLoadDirectoryClick = async () => {
-        console.log(directoryHash)
-        console.log(path)
         props.onLoad(directoryHash, path)
     }
 
@@ -53,7 +50,6 @@ const IpfsDirectory = (props: Props) => {
         if (res && res.Entries) {
             setEntries(res.Entries)
         }
-
     }
 
     useEffect(() => {
@@ -79,28 +75,27 @@ const IpfsDirectory = (props: Props) => {
     return (
         <div className='list-container'>
             <div className='list-directory-header'>
-                <div
-                    className='list-directory-end left'
-                >
+                <div className='list-directory-end left'>
                     <span onClick={() => _handleBackDirectoryClick()}>&#8617;</span>
                 </div>
-                <div
-                    className='list-directory-current'
+                <div className='list-directory-current'
                 >
                     &#x1F4C1;<i>{`${pathStack.length > 0 ? pathStack[pathStack.length - 1] : '/'}`}</i>
                 </div>
-                <div
-                    className='list-directory-end right'
+                <div className='list-directory-end right'
                     onClick={() => _handleLoadDirectoryClick()}
                 >
                     Load
                 </div>
             </div>
-            <ul className='list'>
-                {
-                    _renderDirectories(entries)
-                }
-            </ul >
+            {
+                showList &&
+                <ul className='list'>
+                    {
+                        _renderDirectories(entries)
+                    }
+                </ul >
+            }
         </div>
     )
 }

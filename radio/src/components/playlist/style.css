@@ -9,8 +9,10 @@
 }
 
 .player-container .control{
-    height: 42px;
-    width: 100px;
+
+    padding-top: 3px;
+    padding-bottom: 3px;
+    width: 50px;
     border: solid 2px whitesmoke;
     box-shadow: black 0 0 5px;
     text-align: center;
@@ -27,12 +29,18 @@
 }
 
 .player .prev{
-    border-radius: 42px 0px 42px 10px;
+    border-right: 0;
     box-shadow: none;
 }
 
 .player .next{
-    border-radius: 0px 42px 10px 42px;
+    border-left: 0;
+    box-shadow: none;
+}
+
+.player .play-pause{
+    border-left: 0;
+    border-right: 0;
     box-shadow: none;
 }
 
@@ -46,6 +54,11 @@
     background-color: rgba(10,10,10, .5);
     color:black;
 }
+.light .player-container .play-pause:hover{
+    cursor: pointer;
+    background-color: rgba(10,10,10, .5);
+    color:black;
+}
 
 .dark .player-container .next:hover{
     cursor: pointer;
@@ -53,6 +66,11 @@
     color:black;
 }
 .dark .player-container .prev:hover{
+    cursor: pointer;
+    background-color: rgba(245,245,245, .5);
+    color:black;
+}
+.dark .player-container .play-pause:hover{
     cursor: pointer;
     background-color: rgba(245,245,245, .5);
     color:black;
