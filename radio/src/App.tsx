@@ -5,7 +5,6 @@ import LoadPlaylist from './components/playlist/load';
 import Toggle from './atoms/toggle';
 import Playlist from './components/playlist/playlist';
 import Player from './components/playlist/player';
-import { Radio } from './contract'
 import IpfsDirectory from './components/ipfs/ipfsDirectory';
 import {
   listFilesIpfs,
@@ -18,8 +17,6 @@ function App() {
   const [fileList, setFileList] = useState<File[]>([])
   const [currentSongId, setCurrentSongId] = useState<number>(0)
   const [darkMode, setDarkMode] = useState<boolean>(true)
-  const [contract, setContract] = useState<any>(null)
-  const [account, setAccount] = useState<any>(null)
 
   const _loadPlaylist = async () => {
     const input = document.querySelector('input[type=file]') as HTMLInputElement
@@ -29,15 +26,6 @@ function App() {
         array.push(input.files[i]);
       }
       setFileList(array)
-    }
-  }
-
-  const _initContract = async () => {
-    await Radio.init()
-    setContract(Radio.contract)
-    console.log(Radio.contract)
-    if (Radio.accounts.length > 0) {
-      setAccount(Radio.accounts[0])
     }
   }
 
@@ -61,10 +49,6 @@ function App() {
       // _play(0)
     }
   }, [fileList])
-
-  useEffect(() => {
-    // _initContract()
-  }, [])
 
   return (
     <div className={`App ${darkMode ? 'dark' : 'light'}`}>

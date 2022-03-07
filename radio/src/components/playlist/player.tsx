@@ -74,7 +74,7 @@ const Player = (props: Props) => {
     }, [props.currentSongIdx])
 
     useEffect(() => {
-        setIsPaused
+        setIsPaused(!player.paused)
     }, [player.pause])
 
     const decrementIdx = (idx) => {
@@ -106,7 +106,6 @@ const Player = (props: Props) => {
                     &#9659;&#9659;
                 </div>
             </div>
-            {/* <div>{player.played}</div> */}
             <div id={props.playerId} style={{ visibility: 'hidden' }}></div>
         </div>
     )
